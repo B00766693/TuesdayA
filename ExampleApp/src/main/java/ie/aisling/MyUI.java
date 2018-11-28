@@ -8,6 +8,7 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Label;
+import com.vaadin.ui.Notification;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
@@ -35,7 +36,14 @@ public class MyUI extends UI {
                     + ", it works!"));
         });
         
-        layout.addComponents(name, button);
+        Button button1 = new Button("Clear");
+        button1.addClickListener(e -> {
+            name.clear();
+            name.setCaption("re-enter text");
+            Notification.show("Done");
+        });
+
+        layout.addComponents(name, button, button1);
         
         setContent(layout);
     }
